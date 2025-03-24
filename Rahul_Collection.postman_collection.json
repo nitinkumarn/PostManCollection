@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "b0cfd64a-c851-4bae-96ae-0a9a35b455d5",
+		"name": "Rahul_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9419210"
+	},
+	"item": [
+		{
+			"name": "AddPlace",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();\r",
+							"pm.environment.set(\"place_id\",response.place_id);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"packages": {},
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"location\": {\r\n    \"lat\": -38.383494,\r\n    \"lng\": 33.427362\r\n  },\r\n  \"accuracy\": 50,\r\n  \"name\": \"Frontline house\",\r\n  \"phone_number\": \"(+91) 983 893 3937\",\r\n  \"address\": \"29, side layout, cohen 09\",\r\n  \"types\": [\r\n    \"shoe park\",\r\n    \"shop\"\r\n  ],\r\n  \"website\": \"http://google.com\",\r\n  \"language\": \"French-IN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/maps/api/place/add/json?key =qaclick123",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"place",
+						"add",
+						"json"
+					],
+					"query": [
+						{
+							"key": "key ",
+							"value": "qaclick123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GETPLACE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<style type=\"text/css\">\r",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"    .tftable tr {background-color:#ffffff;}\r",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"    .tftable tr:hover {background-color:#e0ffff;}\r",
+							"</style>\r",
+							"\r",
+							"<table class=\"tftable\" border=\"1\">\r",
+							"    <tr>\r",
+							"        <th>Message</th>\r",
+							"    </tr>\r",
+							"    <tr>\r",
+							"        <td>{{response.msg}}</td>\r",
+							"    </tr>\r",
+							"</table>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    return {response: pm.response.json()}\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rahulshettyacademy.com/maps/api/place/get/json?key=qaclick123&place_id={{place_id}}",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"place",
+						"get",
+						"json"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "qaclick123"
+						},
+						{
+							"key": "place_id",
+							"value": "{{place_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePlace",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"place_id\":{{place_id}},\r\n\"address\":\"Nitinkumar , Bengaluru\",\r\n\"key\":\"qaclick123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/maps/api/place/update/json?key=qaclick123",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"place",
+						"update",
+						"json"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "qaclick123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePlace",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"place_id\": {{place_id}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/maps/api/place/delete/json?key=qaclick",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"place",
+						"delete",
+						"json"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "qaclick"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
